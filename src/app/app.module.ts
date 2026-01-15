@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ButtonModule } from 'primeng/button';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import * as TablerIcons from "angular-tabler-icons/icons";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ButtonModule,
+    TablerIconsModule.pick(TablerIcons, {
+      ignoreWarnings: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
