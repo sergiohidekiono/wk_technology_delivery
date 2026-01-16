@@ -1,0 +1,96 @@
+<div>
+  <div class="font-medium text-4xl mb-4">Dashboard de Entregas</div>
+
+  <div class="card">
+    <p-table
+      #dt2
+      [value]="deliverys"
+      dataKey="id"
+      [customSort]="true"
+      [loading]="loading"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['id', 'cliente']"
+       tableStyleClass="datatable-white"
+      [tableStyle]="{ 'min-width': '60rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              #globalFilter
+              pInputText
+              class="p-inputtext-sm"
+              (input)="dt2.filterGlobal(globalFilter.value, 'contains')"
+              type="text"
+              placeholder="Buscar por Cliente ou Pedido"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id" style="width: 20%">Pedido</th>
+          <th pSortableColumn="cliente" style="width: 20%">Cliente</th>
+          <th pSortableColumn="dataEnvio" style="width: 20%">Data de Envio</th>
+          <th pSortableColumn="status" style="width: 20%">Status</th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter type="text" field="id"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="cliente"></p-columnFilter>
+          </th>
+          <th></th>
+          <th>
+            <p-columnFilter
+              field="status"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <p-dropdown
+                  [ngModel]="value"
+                  [options]="statuses"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Todos"
+                  (onChange)="filter($event.value)"
+                  [showClear]="true"
+                  class="p-column-filter"
+                  appendTo="body"
+                >
+                  <ng-template let-option pTemplate="item">
+                    <p-tag [value]="option.label"></p-tag>
+                  </ng-template>
+                </p-dropdown>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-delivery>
+        <tr>
+          <td>{{ delivery.id }}</td>
+          <td>{{ delivery.cliente }}</td>
+          <td>{{ delivery.dataEnvio | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <p-tag [severity]="getStatusSeverity(delivery.status)">
+              <div class="flex gap-2">
+                <span class="text-base">{{ delivery.status }}</span>
+              </div>
+            </p-tag>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
