@@ -4,25 +4,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonModule } from 'primeng/button';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import * as TablerIcons from "angular-tabler-icons/icons";
+import * as TablerIcons from 'angular-tabler-icons/icons';
+import { SharedModule } from './shared/shared.module';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-
-  ],
+  declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ButtonModule,
+    SharedModule,
     TablerIconsModule.pick(TablerIcons, {
       ignoreWarnings: true,
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

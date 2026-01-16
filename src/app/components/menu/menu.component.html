@@ -1,0 +1,24 @@
+<!-- <div class="card flex justify-content-center"> -->
+<p-toast></p-toast>
+
+<p-menu #menu [model]="items">
+  <ng-template pTemplate="start" let-item>
+    <div class="flex justify-content-center p-2">
+      <div class="border-round background px-2 py-1">
+        <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
+      </div>
+    </div>
+    <p-divider></p-divider>
+  </ng-template>
+  <ng-template pTemplate="item" let-item let-index>
+    <div class="flex align-items-center gap-2 p-2 cursor-pointer">
+      <i-tabler
+        *ngIf="item.tablerIcon"
+        [name]="item.tablerIcon"
+        size="18"
+      ></i-tabler>
+      <span>{{ item.label }}</span>
+    </div>
+  </ng-template>
+</p-menu>
+<!-- </div> -->
