@@ -10,13 +10,15 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { NewDeliveryComponent } from './components/new-delivery/new-delivery.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     DashboardComponent,
+    NewDeliveryComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     TablerIconsModule.pick(TablerIcons, {
       ignoreWarnings: true,
     }),

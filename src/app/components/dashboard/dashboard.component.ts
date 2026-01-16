@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { SortEvent } from 'primeng/api';
 
-import { DashboardService } from './dashboard.service';
 import { Deliverys } from 'src/app/shared/interfaces/deliverys.interface';
+import { DeliveryService } from 'src/app/core/services/delivery.service';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -15,11 +14,10 @@ export class DashboardComponent {
   loading: boolean = true;
   statuses!: any[];
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(private deliveryService: DeliveryService) {}
 
   ngOnInit() {
-    this.dashboardService.getDeliverys().subscribe((data: Deliverys[]) => {
-      console.log(data);
+    this.deliveryService.getDeliverys().subscribe((data: Deliverys[]) => {
       this.loading = false;
       this.deliverys = data;
     });
@@ -51,7 +49,4 @@ export class DashboardComponent {
     table.clear();
   }
 
-  getSeverity(e: any) {
-    console.log('EVENT: ', e);
-  }
 }

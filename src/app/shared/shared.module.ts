@@ -8,6 +8,9 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [],
@@ -19,7 +22,10 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     TagModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    CardModule,
+    CalendarModule,
+    InputTextareaModule,
   ],
   exports: [
     ButtonModule,
@@ -29,7 +35,10 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     TagModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    CardModule,
+    CalendarModule,
+    InputTextareaModule,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,79 @@
+<p-card header="Nova Entrega" class="w-full md:w-6">
+  <form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <label for="cliente">Nome do Cliente</label>
+        <input pInputText id="cliente" formControlName="cliente" />
+        <div
+          *ngIf="form.get('cliente')?.invalid && form.get('cliente')?.touched"
+        >
+          <small class="p-error">O nome do Cliente é obrigatório.</small>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <label for="produto">Produto</label>
+        <input pInputText id="produto" formControlName="produto" />
+        <div
+          *ngIf="form.get('produto')?.invalid && form.get('produto')?.touched"
+        >
+          <small class="p-error">O Produto é obrigatório.</small>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <label for="endereco">Endereço de Entrega</label>
+        <input pInputText id="endereco" formControlName="endereco" />
+        <div
+          *ngIf="form.get('endereco')?.invalid && form.get('endereco')?.touched"
+        >
+          <small class="p-error">O Endereço de Entrega é obrigatório.</small>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <label for="dataEstimadaEntrega">Data estimada de entrega</label>
+        <p-calendar
+          id="dataEstimadaEntrega"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          formControlName="dataEstimadaEntrega"
+          [minDate]="today"
+        ></p-calendar>
+        <div
+          *ngIf="
+            form.get('dataEstimadaEntrega')?.invalid &&
+            form.get('dataEstimadaEntrega')?.touched
+          "
+        >
+          <small class="p-error"
+            >A Data Estimada de Entrega é obrigatório.</small
+          >
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6">
+        <label for="observacoes">Observações</label>
+        <textarea
+          pInputTextarea
+          id="observacoes"
+          rows="3"
+          cols="30"
+          [autoResize]="true"
+          formControlName="observacoes"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end mt-3 gap-2">
+      <button
+        pButton
+        label="Cancelar"
+        class="p-button-text"
+        type="button"
+        (click)="cancel()"
+      ></button>
+      <button pButton label="Salvar" icon="pi pi-check" type="submit"></button>
+    </div>
+  </form>
+</p-card>
