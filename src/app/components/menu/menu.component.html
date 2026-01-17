@@ -1,9 +1,21 @@
 <div class="hidden md:block w-18rem">
-  <p-menu [model]="items" styleClass="w-full py-2">
+  <p-menu [model]="items" styleClass="w-full py-2 shadow-1">
     <ng-template pTemplate="start">
       <div class="flex justify-content-center px-4 py-2">
-        <div class="border-round background px-2 py-1">
-          <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
+        <div
+          class="flex align-items-center gap-2 px-3 py-2 border-round-lg bg-primary shadow-2"
+        >
+          <div
+            class="flex align-items-center justify-content-center bg-white border-round-md"
+            style="width: 36px; height: 36px"
+          >
+            <i-tabler name="truck" class="text-primary"></i-tabler>
+          </div>
+
+          <div class="line-height-1">
+            <div class="text-white font-semibold text-sm">WK Technology</div>
+            <div class="text-white-alpha-80 text-xs">Delivery</div>
+          </div>
         </div>
       </div>
       <p-divider></p-divider>
@@ -29,8 +41,20 @@
   class="md:hidden"
 >
   <div class="flex justify-content-center px-4 py-2">
-    <div class="border-round background px-2 py-1">
-      <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
+    <div
+      class="flex align-items-center gap-2 px-3 py-2 border-round-lg bg-primary shadow-2"
+    >
+      <div
+        class="flex align-items-center justify-content-center bg-white border-round-md"
+        style="width: 36px; height: 36px"
+      >
+        <i-tabler name="truck" class="text-primary"></i-tabler>
+      </div>
+
+      <div class="line-height-1">
+        <div class="text-white font-semibold text-sm">WK Technology</div>
+        <div class="text-white-alpha-80 text-xs">Delivery</div>
+      </div>
     </div>
   </div>
   <p-divider></p-divider>

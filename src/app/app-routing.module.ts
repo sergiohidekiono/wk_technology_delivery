@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DeliveryComponent } from './pages/delivery/delivery.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'nova-entrega', component: DeliveryComponent },
-  { path: 'nova-entrega/:id', component: DeliveryComponent },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule,
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/delivery/delivery.module').then((m) => m.DeliveryModule),
+  },
 ];
 
 @NgModule({

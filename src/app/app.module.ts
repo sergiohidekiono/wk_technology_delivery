@@ -9,26 +9,16 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './components/menu/menu.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { DeliveryComponent } from './pages/delivery/delivery.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    DashboardComponent,
-    DeliveryComponent,
-  ],
+  declarations: [AppComponent, MenuComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     TablerIconsModule.pick(TablerIcons, {
       ignoreWarnings: true,
     }),
