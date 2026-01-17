@@ -1,27 +1,56 @@
-# WkTechnologyDelivery
+```markdown
+# 📦 WK Technology Delivery – Projeto Teste
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Projeto teste de um **sistema de gerenciamento de entregas (delivery/transporte)**.
 
-## Development server
+O objetivo principal é demonstrar:
+- Estruturação de um projeto Angular
+- Uso do PrimeNG para construção de interfaces
+- Padronização visual e organização de layout
+- Clareza na evolução do projeto (commits, estrutura e decisões técnicas)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚚 Visão Geral
 
-## Code scaffolding
+O sistema simula um **painel administrativo de entregas**, permitindo:
+- Listar entregas com filtros e paginação
+- Acompanhar status das entregas
+- Estrutura preparada para CRUD
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🖥️ Tecnologias Utilizadas
 
-## Build
+- **Angular**
+- **PrimeNG** – Componentes UI
+- **Tabler Icons** – Ícones
+- **TypeScript**
+- **Json Server**
+- **HTML5 / CSS3**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🎨 Interface e UX
 
-## Running unit tests
+O layout foi pensado seguindo padrões modernos de dashboards administrativos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Sidebar fixa com navegação
+- Tabelas com status visual
+- Estrutura compatível com componentes PrimeNG
+- Design preparado para escalabilidade
 
-## Running end-to-end tests
+O protótipo visual foi desenvolvido com base em um **design system simples**, priorizando legibilidade e clareza.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🧱 Estrutura Inicial do Projeto
 
-## Further help
+```-
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+src/
+ ├── app/
+ │   ├── components/
+ │   │   └── menu/
+ │   ├── core/
+ │   │   └── services/
+ │   ├── pages/
+ │   │   ├── dashboard/
+ │   │   ├── delivery/
+ │   └── shared/
+ │       ├── modules/
+ │       └── interfaces/
+ └── assets/
+```
