@@ -1,6 +1,5 @@
 <div>
   <div class="font-medium text-4xl mb-4">Dashboard de Entregas</div>
-
   <div class="card">
     <p-table
       #dt2
@@ -13,7 +12,7 @@
       [rowsPerPageOptions]="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="['id', 'cliente']"
-       tableStyleClass="datatable-white"
+      tableStyleClass="datatable-white"
       [tableStyle]="{ 'min-width': '60rem' }"
     >
       <ng-template pTemplate="caption">
@@ -34,9 +33,10 @@
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="id" style="width: 20%">Pedido</th>
-          <th pSortableColumn="cliente" style="width: 20%">Cliente</th>
+          <th pSortableColumn="cliente" style="width: 30%">Cliente</th>
           <th pSortableColumn="dataEnvio" style="width: 20%">Data de Envio</th>
           <th pSortableColumn="status" style="width: 20%">Status</th>
+          <th style="width: 10%" class="text-center">Ação</th>
         </tr>
         <tr>
           <th>
@@ -75,19 +75,30 @@
               </ng-template>
             </p-columnFilter>
           </th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-delivery>
         <tr>
           <td>{{ delivery.id }}</td>
           <td>{{ delivery.cliente }}</td>
-          <td>{{ delivery.dataEnvio | date : "dd/MM/yyyy" }}</td>
+          <td>{{ delivery.dataEnvio | date: "dd/MM/yyyy" }}</td>
           <td>
             <p-tag [severity]="getStatusSeverity(delivery.status)">
               <div class="flex gap-2">
                 <span class="text-base">{{ delivery.status }}</span>
               </div>
             </p-tag>
+          </td>
+          <td>
+            <div class="flex gap-2 justify-content-center">
+              <p-button
+                icon="pi pi-pencil"
+                [text]="true"
+                size="small"
+                (click)="editDelivery(delivery.id)"
+              ></p-button>
+            </div>
           </td>
         </tr>
       </ng-template>

@@ -1,3 +1,5 @@
+import { Historico } from "./historico.interface";
+
 export interface Deliverys {
   id: number;
   cliente: string;
@@ -7,5 +9,5 @@ export interface Deliverys {
   produto: string;
   dataEstimadaEntrega: Date;
   observacoes: string;
-  historico: [{ data: Date; status: string }];
+  historico: Historico[];
 }

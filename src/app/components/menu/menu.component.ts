@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  providers: [MessageService],
 })
 export class MenuComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  constructor(private messageService: MessageService, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.items = [
@@ -23,7 +22,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Nova Entrega',
         tablerIcon: 'plus',
-        command: () => this.menu('newDelivery'),
+        command: () => this.menu('delivery'),
       },
       {
         label: 'Entregas',
@@ -43,14 +42,8 @@ export class MenuComponent implements OnInit {
       case 'dashboard':
         this.router.navigate(['/']);
         break;
-      case 'newDelivery':
-        this.router.navigate(['/novas-entregas']);
-        break;
-      case 'deliverys':
-        this.router.navigate(['/entregas']);
-        break;
-      case 'reports':
-        this.router.navigate(['/relatorios']);
+      case 'delivery':
+        this.router.navigate(['/nova-entrega']);
         break;
     }
   }

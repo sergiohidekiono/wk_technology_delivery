@@ -1,4 +1,7 @@
-<p-card header="Nova Entrega" class="w-full md:w-6">
+<p-card
+  header="{{ deliveryId ? 'Editar Entrega' : 'Nova Entrega' }}"
+  class="w-full md:w-6"
+>
   <form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="grid">
       <div class="col-12 md:col-6">
@@ -63,6 +66,33 @@
           formControlName="observacoes"
         ></textarea>
       </div>
+
+      <div *ngIf="deliveryId" class="col-12 md:col-6">
+        <label for="observacoes">Status</label>
+        <p-dropdown
+          formControlName="status"
+          [options]="statuses"
+          optionLabel="label"
+          optionValue="value"
+          class="p-column-filter"
+          appendTo="body"
+        >
+          <ng-template let-option pTemplate="item">
+            <p-tag [value]="option.label"></p-tag>
+          </ng-template>
+        </p-dropdown>
+      </div>
+
+      <div *ngIf="deliveryId" class="col-12 md:col-6">
+        <label for="historicoPreview">Histórico</label>
+        <textarea
+          rows="5"
+          cols="30"
+          pInputTextarea
+          [autoResize]="true"
+          formControlName="historicoPreview"
+        ></textarea>
+      </div>
     </div>
 
     <div class="flex justify-content-end mt-3 gap-2">
@@ -73,7 +103,13 @@
         type="button"
         (click)="cancel()"
       ></button>
-      <button pButton label="Salvar" icon="pi pi-check" type="submit"></button>
+      <button
+        pButton
+        label="{{ deliveryId ? 'Editar' : 'Salvar' }}"
+        icon="pi pi-check"
+        type="submit"
+        [disabled]="form.pristine || form.invalid"
+      ></button>
     </div>
   </form>
 </p-card>

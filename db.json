@@ -1,29 +1,38 @@
 {
   "entregas": [
     {
-      "id": "123878",
       "cliente": "Elisa Lanicia",
-      "dataEnvio": "2025-08-10",
-      "status": "Pendente",
       "endereco": "Rua das Acácias, 1200 - São Paulo/SP",
-      "produto": "Notebook Dell XPS",
       "dataEstimadaEntrega": "2025-08-14",
+      "produto": "Notebook Dell XPS",
       "observacoes": "Entregar somente no período da tarde",
       "historico": [
         {
           "data": "2025-08-10",
           "status": "Pedido Criado"
+        },
+        {
+          "data": "2026-01-17T15:28:05.738Z",
+          "status": "Pendente"
+        },
+        {
+          "data": "2026-01-17T15:47:47.700Z",
+          "status": "Pendente"
+        },
+        {
+          "data": "2026-01-17T15:47:57.594Z",
+          "status": "Em Rota"
         }
-      ]
+      ],
+      "status": "Em Rota",
+      "id": "123878",
+      "dataEnvio": "2025-08-13"
     },
     {
-      "id": "123902",
       "cliente": "Sandra Santos",
-      "dataEnvio": "2025-08-08",
-      "status": "Em Rota",
       "endereco": "Av. Paulista, 400 - São Paulo/SP",
-      "produto": "Smartphone Samsung S23",
       "dataEstimadaEntrega": "2025-08-13",
+      "produto": "Smartphone Samsung S23",
       "observacoes": "",
       "historico": [
         {
@@ -37,8 +46,23 @@
         {
           "data": "2025-08-13",
           "status": "Saiu para entrega"
+        },
+        {
+          "data": "2026-01-17T15:29:37.102Z",
+          "status": "Entregue"
+        },
+        {
+          "data": "2026-01-17T15:45:58.376Z",
+          "status": "Cancelada"
+        },
+        {
+          "data": "2026-01-17T15:46:56.674Z",
+          "status": "Pendente"
         }
-      ]
+      ],
+      "status": "Pendente",
+      "id": "123902",
+      "dataEnvio": "2025-08-12"
     },
     {
       "id": "123938",
@@ -227,6 +251,30 @@
           "status": "Coletado"
         }
       ]
+    },
+    {
+      "cliente": "Hideki",
+      "endereco": "Rio Branco",
+      "dataEstimadaEntrega": "2026-01-27",
+      "produto": "Teclado Razer",
+      "observacoes": "Teclas Avulsas",
+      "historico": [
+        {
+          "data": "2026-01-17T02:45:39.651Z",
+          "status": "Em Rota"
+        },
+        {
+          "data": "2026-01-17T04:27:00.023Z",
+          "status": "Entregue"
+        },
+        {
+          "data": "2026-01-17T04:28:34.190Z",
+          "status": "Cancelada"
+        }
+      ],
+      "status": "Cancelada",
+      "id": "7245",
+      "dataEnvio": "2026-01-26"
     }
   ]
 }

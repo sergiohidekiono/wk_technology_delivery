@@ -10,15 +10,16 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NewDeliveryComponent } from './components/new-delivery/new-delivery.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     DashboardComponent,
-    NewDeliveryComponent,
+    DeliveryComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       ignoreWarnings: true,
     }),
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
