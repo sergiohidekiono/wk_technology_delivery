@@ -11,6 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CardModule,
     CalendarModule,
     InputTextareaModule,
+    SidebarModule,
   ],
   exports: [
     ButtonModule,
@@ -39,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CardModule,
     CalendarModule,
     InputTextareaModule,
+    SidebarModule,
   ],
 })
 export class SharedModule {}

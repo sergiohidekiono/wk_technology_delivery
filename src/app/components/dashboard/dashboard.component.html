@@ -1,5 +1,4 @@
 <div>
-  <div class="font-medium text-4xl mb-4">Dashboard de Entregas</div>
   <div class="card">
     <p-table
       #dt2
@@ -14,20 +13,26 @@
       [globalFilterFields]="['id', 'cliente']"
       tableStyleClass="datatable-white"
       [tableStyle]="{ 'min-width': '60rem' }"
+      responsiveLayout="scroll"
     >
       <ng-template pTemplate="caption">
-        <div class="flex">
-          <span class="p-input-icon-left ml-auto">
+        <div
+          class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3"
+        >
+          <div class="font-medium text-xl text-center md:text-4xl">
+            Dashboard de Entregas
+          </div>
+          <div class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input
               #globalFilter
               pInputText
-              class="p-inputtext-sm"
+              class="p-inputtext-sm w-full md:w-auto"
               (input)="dt2.filterGlobal(globalFilter.value, 'contains')"
               type="text"
               placeholder="Buscar por Cliente ou Pedido"
             />
-          </span>
+          </div>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
@@ -99,6 +104,15 @@
                 (click)="editDelivery(delivery.id)"
               ></p-button>
             </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5" class="text-center p-4">
+            <i class="pi pi-search mr-2 text-xl"></i>
+            Nenhum <b>Pedido</b> ou <b>Cliente</b> encontrado com os filtros
+            aplicados.
           </td>
         </tr>
       </ng-template>

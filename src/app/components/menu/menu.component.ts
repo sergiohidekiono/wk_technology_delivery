@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { AppMenuItem } from 'src/app/shared/interfaces/appMenu.interface';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +8,9 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  items: MenuItem[] | undefined;
+  items: AppMenuItem[] = [];
+  isMobile = false;
+  mobileMenuVisible = false;
 
   constructor(private router: Router) {}
 
@@ -35,6 +37,12 @@ export class MenuComponent implements OnInit {
         command: () => this.menu('reports'),
       },
     ];
+    this.checkScreen();
+    window.addEventListener('resize', this.checkScreen.bind(this));
+  }
+
+  checkScreen() {
+    this.isMobile = window.innerWidth < 768;
   }
 
   menu(option: string) {
@@ -46,5 +54,10 @@ export class MenuComponent implements OnInit {
         this.router.navigate(['/nova-entrega']);
         break;
     }
+  }
+
+  menuItemMobile(item: AppMenuItem) {
+    item.command?.({ item });
+    this.mobileMenuVisible = false;
   }
 }

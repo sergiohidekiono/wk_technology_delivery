@@ -1,14 +1,45 @@
-<p-menu #menu [model]="items" styleClass="py-2">
-  <ng-template pTemplate="start" let-item>
-    <div class="flex justify-content-center px-4 py-2">
-      <div class="border-round background px-2 py-1">
-        <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
+<div class="hidden md:block w-18rem">
+  <p-menu [model]="items" styleClass="w-full py-2">
+    <ng-template pTemplate="start">
+      <div class="flex justify-content-center px-4 py-2">
+        <div class="border-round background px-2 py-1">
+          <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
+        </div>
       </div>
+      <p-divider></p-divider>
+    </ng-template>
+
+    <ng-template pTemplate="item" let-item>
+      <div class="flex align-items-center gap-2 px-4 py-2 cursor-pointer">
+        <i-tabler
+          *ngIf="item.tablerIcon"
+          [name]="item.tablerIcon"
+          size="18"
+        ></i-tabler>
+        <span>{{ item.label }}</span>
+      </div>
+    </ng-template>
+  </p-menu>
+</div>
+
+<p-sidebar
+  [(visible)]="mobileMenuVisible"
+  [fullScreen]="true"
+  position="left"
+  class="md:hidden"
+>
+  <div class="flex justify-content-center px-4 py-2">
+    <div class="border-round background px-2 py-1">
+      <i-tabler name="truck" class="fill-white medium thin"></i-tabler>
     </div>
-    <p-divider></p-divider>
-  </ng-template>
-  <ng-template pTemplate="item" let-item let-index>
-    <div class="flex align-items-center gap-2 px-4 py-2 cursor-pointer">
+  </div>
+  <p-divider></p-divider>
+  <div *ngFor="let item of items">
+    <div
+      *ngIf="item"
+      class="flex align-items-center gap-2 px-4 py-2 cursor-pointer"
+      (click)="menuItemMobile(item); mobileMenuVisible = false"
+    >
       <i-tabler
         *ngIf="item.tablerIcon"
         [name]="item.tablerIcon"
@@ -16,5 +47,13 @@
       ></i-tabler>
       <span>{{ item.label }}</span>
     </div>
-  </ng-template>
-</p-menu>
+  </div>
+</p-sidebar>
+
+<p-button
+  class="md:hidden"
+  styleClass="p-button-secondary mt-2"
+  [text]="true"
+  icon="pi pi-bars"
+  (click)="mobileMenuVisible = true"
+></p-button>

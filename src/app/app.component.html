@@ -1,5 +1,7 @@
 <p-toast></p-toast>
-<div class="wrap flex gap-5 h-max-auto min-h-screen p-6">
+<div class="wrap flex flex-column md:flex-row md:gap-5 min-h-screen md:p-6">
   <app-menu></app-menu>
-  <router-outlet></router-outlet>
+  <div class="flex-1 w-full overflow-x-auto">
+    <router-outlet></router-outlet>
+  </div>
 </div>
