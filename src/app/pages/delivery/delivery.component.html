@@ -1,7 +1,11 @@
 <div class="m-4 md:m-0">
-
   <p-card
     header="{{ deliveryId ? 'Editar Entrega' : 'Nova Entrega' }}"
+    subheader="{{
+      deliveryId
+        ? 'Atualize as informações da entrega selecionada'
+        : 'Preencha os dados para cadastrar uma nova entrega'
+    }}"
     class="w-full md:w-6"
   >
     <form class="p-fluid" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -30,7 +34,9 @@
           <label for="endereco">Endereço de Entrega</label>
           <input pInputText id="endereco" formControlName="endereco" />
           <div
-            *ngIf="form.get('endereco')?.invalid && form.get('endereco')?.touched"
+            *ngIf="
+              form.get('endereco')?.invalid && form.get('endereco')?.touched
+            "
           >
             <small class="p-error">O Endereço de Entrega é obrigatório.</small>
           </div>

@@ -1,7 +1,7 @@
 import { Historico } from "./historico.interface";
 
 export interface Deliverys {
-  id: number;
+  id: string;
   cliente: string;
   dataEnvio: Date;
   status: string;

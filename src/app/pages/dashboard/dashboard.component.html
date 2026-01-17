@@ -1,7 +1,9 @@
-<div>
-  <div class="card">
+<div *ngIf="!isMobile">
+  <div class="card shadow-2 border-round-lg p-4">
     <p-table
       #dt2
+      showGridlines="false"
+      responsiveLayout="scroll"
       [value]="deliverys"
       dataKey="id"
       [customSort]="true"
@@ -19,15 +21,18 @@
         <div
           class="flex flex-column md:flex-row md:align-items-center md:justify-content-between gap-3"
         >
-          <div class="font-medium text-xl text-center md:text-4xl">
-            Dashboard de Entregas
+          <div class="flex flex-column gap-1">
+            <span class="text-2xl md:text-3xl font-semibold"> Entregas </span>
+            <span class="text-sm text-500">
+              Acompanhe e gerencie os pedidos
+            </span>
           </div>
           <div class="p-input-icon-left">
             <i class="pi pi-search"></i>
             <input
               #globalFilter
               pInputText
-              class="p-inputtext-sm w-full md:w-auto"
+              class="p-inputtext-sm border-round-lg w-full md:w-20rem"
               (input)="dt2.filterGlobal(globalFilter.value, 'contains')"
               type="text"
               placeholder="Buscar por Cliente ou Pedido"
@@ -90,17 +95,18 @@
           <td>{{ delivery.dataEnvio | date: "dd/MM/yyyy" }}</td>
           <td>
             <p-tag [severity]="getStatusSeverity(delivery.status)">
-              <div class="flex gap-2">
-                <span class="text-base">{{ delivery.status }}</span>
-              </div>
+              <div class="px-3 py-1 text-sm">{{ delivery.status }}</div>
             </p-tag>
           </td>
           <td>
             <div class="flex gap-2 justify-content-center">
               <p-button
                 icon="pi pi-pencil"
+                pTooltip="Editar entrega"
+                tooltipPosition="top"
+                [rounded]="true"
                 [text]="true"
-                size="small"
+                severity="secondary"
                 (click)="editDelivery(delivery.id)"
               ></p-button>
             </div>
@@ -109,13 +115,89 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="5" class="text-center p-4">
-            <i class="pi pi-search mr-2 text-xl"></i>
-            Nenhum <b>Pedido</b> ou <b>Cliente</b> encontrado com os filtros
-            aplicados.
+          <td colspan="5" class="text-center p-6 text-600">
+            <i class="pi pi-search text-3xl mb-3 block"></i>
+            <div class="text-lg font-medium">Nenhum resultado encontrado</div>
+            <div class="text-sm">Tente ajustar os Filtros ou a Busca</div>
           </td>
         </tr>
       </ng-template>
     </p-table>
+  </div>
+</div>
+
+<div *ngIf="isMobile" class="flex justify-content-between m-4">
+  <div class="flex flex-column gap-1">
+    <span class="text-2xl md:text-3xl font-semibold"> Entregas </span>
+    <span class="text-sm text-500"> Acompanhe e gerencie os pedidos </span>
+  </div>
+  <p-button
+    icon="pi pi-filter"
+    label="Filtrar"
+    size="small"
+    (click)="filtersVisible = true"
+  ></p-button>
+</div>
+<p-sidebar [(visible)]="filtersVisible" position="right">
+  <h3 class="mb-3">Filtros</h3>
+
+  <div class="flex flex-column gap-3">
+    <input pInputText placeholder="Pedido" [(ngModel)]="mobileFilters.id" />
+
+    <input
+      pInputText
+      placeholder="Cliente"
+      [(ngModel)]="mobileFilters.cliente"
+    />
+
+    <p-dropdown
+      [options]="statuses"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Status"
+      [(ngModel)]="mobileFilters.status"
+      [showClear]="true"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex gap-2 mt-4">
+    <p-button
+      label="Limpar"
+      severity="secondary"
+      class="w-full"
+      (click)="clearMobileFilters()"
+    ></p-button>
+
+    <p-button
+      label="Aplicar"
+      class="w-full"
+      (click)="applyMobileFilters()"
+    ></p-button>
+  </div>
+</p-sidebar>
+
+<div *ngIf="isMobile" class="flex flex-column gap-3 m-4">
+  <div
+    *ngFor="let delivery of filteredDeliverys"
+    class="p-3 bg-white border-round-lg shadow-1"
+  >
+    <div class="flex justify-content-between mb-2">
+      <span class="font-semibold">#{{ delivery.id }}</span>
+      <p-tag [severity]="getStatusSeverity(delivery.status)">
+        {{ delivery.status }}
+      </p-tag>
+    </div>
+
+    <div class="text-sm text-600">Cliente: {{ delivery.cliente }}</div>
+    <div class="text-sm text-600 mb-3">
+      Envio: {{ delivery.dataEnvio | date: "dd/MM/yyyy" }}
+    </div>
+
+    <p-button
+      icon="pi pi-pencil"
+      styleClass="p-button-sm p-2"
+      severity="secondary"
+      (click)="editDelivery(delivery)"
+    ></p-button>
   </div>
 </div>
