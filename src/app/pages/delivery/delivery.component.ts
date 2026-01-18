@@ -29,6 +29,7 @@ export class DeliveryComponent implements OnInit {
     this.form = form.group({
       cliente: ['', Validators.required],
       endereco: ['', Validators.required],
+      dataEnvio: [''],
       dataEstimadaEntrega: ['', Validators.required],
       produto: ['', Validators.required],
       observacoes: [''],
@@ -55,6 +56,7 @@ export class DeliveryComponent implements OnInit {
               id: delivery.id,
               cliente: delivery.cliente,
               endereco: delivery.endereco,
+              dataEnvio: delivery.dataEnvio,
               dataEstimadaEntrega: new Date(date.setDate(date.getDate() + 1)),
               produto: delivery.produto,
               observacoes: delivery.observacoes,
@@ -92,12 +94,14 @@ export class DeliveryComponent implements OnInit {
 
     if (this.deliveryId) {
       delivery.id = this.deliveryId;
-      delivery.dataEstimadaEntrega = this.formatDate();
+      delivery.dataEstimadaEntrega = this.formatDate(
+        this.form.value.dataEstimadaEntrega,
+      );
       delivery.historico.push({
         data: new Date(),
         status: delivery.status,
       });
-      delivery.dataEnvio = this.formatDate();
+      delivery.dataEnvio = this.form.value.dataEnvio;
       this.deliveryService.updateDelivery(delivery).subscribe(
         () => {
           this.toastService.showSuccess('Entrega atualizada com sucesso!');
@@ -111,10 +115,12 @@ export class DeliveryComponent implements OnInit {
       );
       this.form.reset();
     } else {
-      delivery.dataEstimadaEntrega = this.formatDate();
+      delivery.dataEstimadaEntrega = this.formatDate(
+        this.form.value.dataEstimadaEntrega,
+      );
       delivery.status = 'Pendente';
       delivery.historico = [{ data: new Date(), status: 'Pendente' }];
-      delivery.dataEnvio = this.formatDate();
+      delivery.dataEnvio = this.formatDate(new Date());
       this.deliveryService.postNewDelivery(delivery).subscribe(
         () => {
           this.toastService.showSuccess('Entrega criada com sucesso!');
@@ -135,12 +141,11 @@ export class DeliveryComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  formatDate() {
-    const value = this.form.value.dataEstimadaEntrega;
-    const date = value instanceof Date ? value : new Date(value);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+  formatDate(date: Date): string {
+    const dateParam = date instanceof Date ? date : new Date(date);
+    const year = dateParam.getFullYear();
+    const month = String(dateParam.getMonth() + 1).padStart(2, '0');
+    const day = String(dateParam.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
 }
