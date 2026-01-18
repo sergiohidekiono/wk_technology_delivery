@@ -12,12 +12,11 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   deliverys!: Deliverys[];
-  loading: boolean = true;
+  isLoading: boolean = true;
   statuses!: any[];
   isMobile = false;
   @ViewChild('dt2') table!: Table;
   filteredDeliverys!: Deliverys[];
-
   filtersVisible: boolean = false;
 
   mobileFilters = {
@@ -35,9 +34,9 @@ export class DashboardComponent {
     this.checkScreen();
     window.addEventListener('resize', () => this.checkScreen());
     this.deliveryService.getDeliverys().subscribe((data: Deliverys[]) => {
-      this.loading = false;
       this.deliverys = data;
       this.filteredDeliverys = data;
+      this.isLoading = false;
     });
     this.statuses = this.deliveryService.getStatuses();
   }

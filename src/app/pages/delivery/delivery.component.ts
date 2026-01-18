@@ -12,6 +12,7 @@ import { Deliverys } from 'src/app/shared/interfaces/deliverys.interface';
   styleUrls: ['./delivery.component.scss'],
 })
 export class DeliveryComponent implements OnInit {
+  isLoading: boolean = true;
   form: FormGroup;
   today = new Date();
   deliveryId: string | null = null;
@@ -62,8 +63,10 @@ export class DeliveryComponent implements OnInit {
               status: delivery.status,
             });
             this.form.markAsPristine();
+            this.isLoading = false;
           });
       }
+      this.isLoading = false;
     });
   }
 
@@ -98,10 +101,13 @@ export class DeliveryComponent implements OnInit {
       this.deliveryService.updateDelivery(delivery).subscribe(
         () => {
           this.toastService.showSuccess('Entrega atualizada com sucesso!');
+          this.isLoading = false;
           this.router.navigate(['/']);
         },
-        (error) =>
-          this.toastService.showError(`Erro ao atualizar a entrega! ${error}`),
+        (error) => {
+          this.toastService.showError(`Erro ao atualizar a entrega! ${error}`);
+          this.isLoading = false;
+        },
       );
       this.form.reset();
     } else {
@@ -112,10 +118,13 @@ export class DeliveryComponent implements OnInit {
       this.deliveryService.postNewDelivery(delivery).subscribe(
         () => {
           this.toastService.showSuccess('Entrega criada com sucesso!');
+          this.isLoading = false;
           this.router.navigate(['/']);
         },
-        (error) =>
-          this.toastService.showError(`Erro ao criar entrega! ${error}`),
+        (error) => {
+          this.toastService.showError(`Erro ao criar entrega! ${error}`);
+          this.isLoading = false;
+        },
       );
       this.form.reset();
     }

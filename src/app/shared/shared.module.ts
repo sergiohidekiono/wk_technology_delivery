@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
@@ -12,10 +13,13 @@ import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SidebarModule } from 'primeng/sidebar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LoadingComponent],
   imports: [
+    CommonModule,
     ButtonModule,
     MenuModule,
     ToastModule,
@@ -28,8 +32,10 @@ import { SidebarModule } from 'primeng/sidebar';
     CalendarModule,
     InputTextareaModule,
     SidebarModule,
+    ProgressSpinnerModule,
   ],
   exports: [
+    LoadingComponent,
     ButtonModule,
     MenuModule,
     ToastModule,
@@ -42,6 +48,7 @@ import { SidebarModule } from 'primeng/sidebar';
     CalendarModule,
     InputTextareaModule,
     SidebarModule,
+    ProgressSpinnerModule,
   ],
 })
 export class SharedModule {}
