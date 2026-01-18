@@ -115,7 +115,7 @@ export class DeliveryComponent implements OnInit {
           this.router.navigate(['/']);
         },
         (error) =>
-          this.toastService.showSuccess(`Erro ao criar entrega! ${error}`),
+          this.toastService.showError(`Erro ao criar entrega! ${error}`),
       );
       this.form.reset();
     }
