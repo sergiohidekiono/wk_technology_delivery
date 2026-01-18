@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DeliveryService } from 'src/app/core/services/delivery.service';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { Deliverys } from 'src/app/shared/interfaces/deliverys.interface';
 
 @Component({
   selector: 'app-delivery',
@@ -45,7 +46,8 @@ export class DeliveryComponent implements OnInit {
         this.statuses = this.deliveryService.getStatuses();
         this.deliveryService
           .getDeliveryById(this.deliveryId)
-          .subscribe((delivery) => {
+          .subscribe((res: any) => {
+            const delivery = res[0];
             const date = new Date(delivery.dataEstimadaEntrega);
             const auxHistorico = delivery?.historico;
             this.form.patchValue({
@@ -99,9 +101,7 @@ export class DeliveryComponent implements OnInit {
           this.router.navigate(['/']);
         },
         (error) =>
-          this.toastService.showSuccess(
-            `Erro ao atualizar a entrega! ${error}`,
-          ),
+          this.toastService.showError(`Erro ao atualizar a entrega! ${error}`),
       );
       this.form.reset();
     } else {
