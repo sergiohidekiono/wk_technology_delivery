@@ -13,12 +13,12 @@ import { Component, Input } from '@angular/core';
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* ocupa toda a tela */
-        position: fixed; /* fica sobre a tela */
+        height: 100vh;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.5); /* opcional overlay */
+        background: rgba(255, 255, 255, 0.5);
         z-index: 1000;
       }
     `,

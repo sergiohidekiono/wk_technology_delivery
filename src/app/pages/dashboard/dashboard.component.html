@@ -126,78 +126,80 @@
   </div>
 </div>
 
-<div *ngIf="isMobile" class="flex justify-content-between m-4">
-  <div class="flex flex-column gap-1">
-    <span class="text-2xl md:text-3xl font-semibold"> Entregas </span>
-    <span class="text-sm text-500"> Acompanhe e gerencie os pedidos </span>
-  </div>
-  <p-button
-    icon="pi pi-filter"
-    label="Filtrar"
-    size="small"
-    (click)="filtersVisible = true"
-  ></p-button>
-</div>
-<p-sidebar [(visible)]="filtersVisible" position="right">
-  <h3 class="mb-3">Filtros</h3>
-
-  <div class="flex flex-column gap-3">
-    <input pInputText placeholder="Pedido" [(ngModel)]="mobileFilters.id" />
-
-    <input
-      pInputText
-      placeholder="Cliente"
-      [(ngModel)]="mobileFilters.cliente"
-    />
-
-    <p-dropdown
-      [options]="statuses"
-      optionLabel="label"
-      optionValue="value"
-      placeholder="Status"
-      [(ngModel)]="mobileFilters.status"
-      [showClear]="true"
-    ></p-dropdown>
-  </div>
-
-  <div class="flex gap-2 mt-4">
+<div *ngIf="isMobile">
+  <div class="flex justify-content-between m-4">
+    <div class="flex flex-column gap-1">
+      <span class="text-2xl md:text-3xl font-semibold"> Entregas </span>
+      <span class="text-sm text-500"> Acompanhe e gerencie os pedidos </span>
+    </div>
     <p-button
-      label="Limpar"
-      severity="secondary"
-      class="w-full"
-      (click)="clearMobileFilters()"
-    ></p-button>
-
-    <p-button
-      label="Aplicar"
-      class="w-full"
-      (click)="applyMobileFilters()"
+      icon="pi pi-filter"
+      label="Filtrar"
+      size="small"
+      (click)="filtersVisible = true"
     ></p-button>
   </div>
-</p-sidebar>
+  <p-sidebar [(visible)]="filtersVisible" position="right">
+    <h3 class="mb-3">Filtros</h3>
 
-<div *ngIf="isMobile" class="flex flex-column gap-3 m-4">
-  <div
-    *ngFor="let delivery of filteredDeliverys"
-    class="p-3 bg-white border-round-lg shadow-1"
-  >
-    <div class="flex justify-content-between mb-2">
-      <span class="font-semibold">#{{ delivery.id }}</span>
-      <p-tag [severity]="getStatusSeverity(delivery.status)">
-        {{ delivery.status }}
-      </p-tag>
+    <div class="flex flex-column gap-3">
+      <input pInputText placeholder="Pedido" [(ngModel)]="mobileFilters.id" />
+
+      <input
+        pInputText
+        placeholder="Cliente"
+        [(ngModel)]="mobileFilters.cliente"
+      />
+
+      <p-dropdown
+        [options]="statuses"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Status"
+        [(ngModel)]="mobileFilters.status"
+        [showClear]="true"
+      ></p-dropdown>
     </div>
 
-    <div class="text-sm text-600">Cliente: {{ delivery.cliente }}</div>
-    <div class="text-sm text-600 mb-3">
-      Envio: {{ delivery.dataEnvio | date: "dd/MM/yyyy" }}
-    </div>
+    <div class="flex gap-2 mt-4">
+      <p-button
+        label="Limpar"
+        severity="secondary"
+        class="w-full"
+        (click)="clearMobileFilters()"
+      ></p-button>
 
-    <p-button
-      icon="pi pi-pencil"
-      styleClass="p-button-sm p-2"
-      severity="secondary"
-      (click)="editDelivery(delivery)"
-    ></p-button>
+      <p-button
+        label="Aplicar"
+        class="w-full"
+        (click)="applyMobileFilters()"
+      ></p-button>
+    </div>
+  </p-sidebar>
+
+  <div class="flex flex-column gap-3 m-4">
+    <div
+      *ngFor="let delivery of filteredDeliverys"
+      class="p-3 bg-white border-round-lg shadow-1"
+    >
+      <div class="flex justify-content-between mb-2">
+        <span class="font-semibold">#{{ delivery.id }}</span>
+        <p-tag [severity]="getStatusSeverity(delivery.status)">
+          {{ delivery.status }}
+        </p-tag>
+      </div>
+
+      <div class="text-sm text-600">Cliente: {{ delivery.cliente }}</div>
+      <div class="text-sm text-600 mb-3">
+        Envio: {{ delivery.dataEnvio | date: "dd/MM/yyyy" }}
+      </div>
+
+      <p-button
+        icon="pi pi-pencil"
+        styleClass="p-button-sm p-2"
+        severity="secondary"
+        (click)="editDelivery(delivery)"
+      ></p-button>
+    </div>
   </div>
 </div>

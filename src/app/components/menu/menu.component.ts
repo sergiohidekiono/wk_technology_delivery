@@ -51,7 +51,7 @@ export class MenuComponent implements OnInit {
         this.router.navigate(['/']);
         break;
       case 'delivery':
-        this.router.navigate(['/nova-entrega']);
+        this.router.navigate(['delivery/nova-entrega']);
         break;
     }
   }

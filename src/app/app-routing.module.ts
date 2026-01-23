@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DeliveryComponent } from './pages/delivery/delivery.component';
 
 const routes: Routes = [
   {
@@ -11,7 +10,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: '',
+    path: 'delivery',
     loadChildren: () =>
       import('./pages/delivery/delivery.module').then((m) => m.DeliveryModule),
   },
